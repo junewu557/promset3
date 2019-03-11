@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Scrolling Nav - Start Bootstrap Template</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="static/vendor/bootstrap/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="static/css/scrolling-nav.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+  <!-- Navigation -->
+  <!-- Navigation -->
+
+  <header class="bg-primary text-white">
+    <div class="container text-center">
+      <h1>Welcome to Datatable</h1>
+      <p class="lead">This is trying to integrate datatable through flask</p>
+    </div>
+  </header>
+
+  <section id="about">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <h2>Problem set 3</h2>
+          <p class="lead">Membership level</p>
+          <ul>
+            <li>membership list</li>
+            <div id="chart" ></div>
+        {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="static/vendor/jquery/jquery.min.js"></script>
+  <script src="static/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="static/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+
+  <!-- Custom JavaScript for this theme -->
+  <script src="static/js/scrolling-nav.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+	<script>
+      $(document).ready(function(){
+        var chart = c3.generate({
+                    data: {
+                        columns: [{% for name,point in entries %}
+                                    ['{{name}}','{{membership_level}}'],
+                                  {% endfor %}
+                                 ],
+                       type : 'bar',
+                       labels: true,
+                     },
+                    axis: {
+                      x: {label: 'name'},
+                      y: {label: 'membership_level'}
+                    },
+                    bar: {
+                        title: "Membership Level:",
+                    },
+                    tooltip: {
+                        show: false,
+                    }
+                }); // end c3.generate
+      }); // end document ready
+    </script>
+
+</body>
+
+</html>
